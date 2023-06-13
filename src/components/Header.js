@@ -2,8 +2,11 @@ import React, { useContext } from "react";
 import { SidebarContext } from "../contexts/SidebarContext";
 import { BsBag } from "react-icons/bs";
 import { IoMdHome } from "react-icons/io";
+<<<<<<< HEAD
 import {CiUser} from "react-icons/ci";
 import {BiSolidUser} from "react-icons/bi";
+=======
+>>>>>>> 4492678d782ebc26c12a56887defbe7e0957d015
 import { CartContext } from "../contexts/CartContext";
 import { Link } from "react-router-dom";
 
@@ -34,19 +37,26 @@ const Header = () => {
    {/* <div onClick={() => {
           setIsOpen(!isOpen);
         }}> */}
+<<<<<<< HEAD
        <div className="flex  items-center">
        <Link to={`/login`} >
        {/* <BiSolidUser className="text-3xl font-bold mx-2 " color="white"/> */}
           <CiUser className="text-3xl font-bold mx-2 " color="white" />
         </Link>
        <Link to={`/cart`}> 
+=======
+        <Link to={`/cart`}> 
+>>>>>>> 4492678d782ebc26c12a56887defbe7e0957d015
         <BsBag className="text-2xl" color="white"  /> 
            <h1 className=" absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 bg-red-500 text-white text-xs rounded-full"> {totalItem} </h1>
        
         </Link>
+<<<<<<< HEAD
 
        
        </div>
+=======
+>>>>>>> 4492678d782ebc26c12a56887defbe7e0957d015
           {/* </div> */}
     </div>
         

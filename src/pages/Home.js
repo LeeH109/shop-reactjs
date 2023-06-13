@@ -42,9 +42,15 @@ const Home = () => {
   };
 
   // phân trang 
+<<<<<<< HEAD
   // const visible = showAll ? products : products.slice(0,14);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12; // Thay đổi số này tùy theo yêu cầu của bạn
+=======
+  const visible = showAll ? products : products.slice(0,14);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10; // Thay đổi số này tùy theo yêu cầu của bạn
+>>>>>>> 4492678d782ebc26c12a56887defbe7e0957d015
   const indexOfLastItem = currentPage * itemsPerPage;
  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
  const currentItems = products.slice(indexOfFirstItem, indexOfLastItem);
@@ -75,7 +81,11 @@ const Home = () => {
             type="text"
             className="block w-full px-4 py-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
              placeholder="Search..."
+<<<<<<< HEAD
             // value={filterSearch}
+=======
+            value={filterSearch}
+>>>>>>> 4492678d782ebc26c12a56887defbe7e0957d015
             onChange={handleSearch}
             
           />
@@ -125,6 +135,7 @@ const Home = () => {
             
           </div>
           <div>
+<<<<<<< HEAD
       {/* {currentPage > 1 && (
         <button onClick={goToPreviousPage}>Trang trước</button>
       )} */}
@@ -146,12 +157,33 @@ const Home = () => {
           onClick={() => goToPage(page)}
           style={{ fontWeight: currentPage === page ? 'bold' : 'normal'
          , color: currentPage === page ? 'red' : 'white' }}
+=======
+      {currentPage > 1 && (
+        <button onClick={goToPreviousPage}>Trang trước</button>
+      )}
+
+      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+        <button
+          key={page}
+          onClick={() => goToPage(page)}
+          style={{ fontWeight: currentPage === page ? 'bold' : 'normal' }}
+>>>>>>> 4492678d782ebc26c12a56887defbe7e0957d015
         >
           {page}
         </button>
       ))}
+<<<<<<< HEAD
      </div> 
 
+=======
+
+      {currentPage < totalPages && (
+        <button onClick={goToNextPage}>Trang sau</button>
+      )}
+    </div>
+        </div>
+      </section>
+>>>>>>> 4492678d782ebc26c12a56887defbe7e0957d015
     </div>
   );
 };
