@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { SidebarContext } from "../contexts/SidebarContext";
 import { BsBag } from "react-icons/bs";
 import { IoMdHome } from "react-icons/io";
+import {CiUser} from "react-icons/ci";
+import {BiSolidUser} from "react-icons/bi";
 import { CartContext } from "../contexts/CartContext";
 import { Link } from "react-router-dom";
 
@@ -32,11 +34,19 @@ const Header = () => {
    {/* <div onClick={() => {
           setIsOpen(!isOpen);
         }}> */}
-        <Link to={`/cart`}> 
+       <div className="flex  items-center">
+       <Link to={`/login`} >
+       {/* <BiSolidUser className="text-3xl font-bold mx-2 " color="white"/> */}
+          <CiUser className="text-3xl font-bold mx-2 " color="white" />
+        </Link>
+       <Link to={`/cart`}> 
         <BsBag className="text-2xl" color="white"  /> 
            <h1 className=" absolute top-0 right-0 inline-flex items-center justify-center w-4 h-4 bg-red-500 text-white text-xs rounded-full"> {totalItem} </h1>
        
         </Link>
+
+       
+       </div>
           {/* </div> */}
     </div>
         

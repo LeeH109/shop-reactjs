@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import {  useNavigate, useNavigation, useParams } from 'react-router-dom';
 import { ProductContext } from '../contexts/ProductContext';
 import { CartContext } from '../contexts/CartContext';
-
+import {AiOutlineArrowLeft} from 'react-icons/ai'
 
 const ProductDetails = () => {
 
@@ -21,7 +21,7 @@ const ProductDetails = () => {
       <section className='h-screen flex justify-center items-center '>Loading ....</section>
     }
     const { title ,  originalPrice , image, description } = product ;
-  return <section className='pt-32 pb-12 lg:py-32 h-screen flex items-center'>
+  return <section className='pt-32 pb-12 lg:py-32 h-screen h-auto flex items-center'>
 <div className=" container mx-auto">
 <div className="flex flex-col lg:flex-row items-center">
 <div className='flex flex-1 justify-center items-center mb-8 lg:mb-0'>
@@ -45,8 +45,12 @@ const ProductDetails = () => {
 
 
 {/* button */}
-<button onClick={goBack}>Quay lại</button>
+<div className='flex mt-5 mb-10 items-center justify-end cursor-pointer 
+md:my-12 lg:my-12 sm:my-12 ' onClick={goBack}>
+<AiOutlineArrowLeft className='mx-1'/>
+<button  className='uppercase font-medium'>Quay lại</button>
 
+</div>
 </div>
 </section>
 

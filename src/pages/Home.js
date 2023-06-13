@@ -42,9 +42,9 @@ const Home = () => {
   };
 
   // phân trang 
-  const visible = showAll ? products : products.slice(0,14);
+  // const visible = showAll ? products : products.slice(0,14);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 10; // Thay đổi số này tùy theo yêu cầu của bạn
+  const itemsPerPage = 12; // Thay đổi số này tùy theo yêu cầu của bạn
   const indexOfLastItem = currentPage * itemsPerPage;
  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
  const currentItems = products.slice(indexOfFirstItem, indexOfLastItem);
@@ -75,7 +75,7 @@ const Home = () => {
             type="text"
             className="block w-full px-4 py-2 text-purple-700 bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
              placeholder="Search..."
-            value={filterSearch}
+            // value={filterSearch}
             onChange={handleSearch}
             
           />
@@ -125,26 +125,33 @@ const Home = () => {
             
           </div>
           <div>
-      {currentPage > 1 && (
+      {/* {currentPage > 1 && (
         <button onClick={goToPreviousPage}>Trang trước</button>
-      )}
+      )} */}
 
-      {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+   
+      {/* {currentPage < totalPages && (
+        <button onClick={goToNextPage}>Trang sau</button>
+      )} */}
+    </div>
+        </div>
+      </section>
+      <div className="flex m-auto container justify-center mb-12
+       ">
+     {Array.from({ length: totalPages }, ( _ , i) => i + 1).map((page) => (
         <button
           key={page}
+          className="p-2 px-5 mx-[2px]  bg-slate-800 text-white cursor-pointer
+          group-hover:bg-slate-100 transition-all duration-300   "
           onClick={() => goToPage(page)}
-          style={{ fontWeight: currentPage === page ? 'bold' : 'normal' }}
+          style={{ fontWeight: currentPage === page ? 'bold' : 'normal'
+         , color: currentPage === page ? 'red' : 'white' }}
         >
           {page}
         </button>
       ))}
+     </div> 
 
-      {currentPage < totalPages && (
-        <button onClick={goToNextPage}>Trang sau</button>
-      )}
-    </div>
-        </div>
-      </section>
     </div>
   );
 };

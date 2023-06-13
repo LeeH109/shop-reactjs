@@ -6,7 +6,10 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Sidebar from "./components/Sidebar";
 import Cart from "./components/Cart";
+import Login from "./pages/Login"
+
 const App = () => {
+ 
   return (
     <div className="overflow-hidden">
       {/* react app */}
@@ -14,6 +17,7 @@ const App = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login/>} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart/>} />
         </Routes>
