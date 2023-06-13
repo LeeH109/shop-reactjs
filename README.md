@@ -1,1 +1,1 @@
-# shop-reactjs
+# ecommerce-shop-starter
