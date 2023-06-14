@@ -6,25 +6,28 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Sidebar from "./components/Sidebar";
 import Cart from "./components/Cart";
-<<<<<<< HEAD
+
 import Login from "./pages/Login"
+import Register from "./pages/Register";
+
+
+ 
 
 const App = () => {
- 
-=======
-const App = () => {
->>>>>>> 4492678d782ebc26c12a56887defbe7e0957d015
-  return (
+ return (
     <div className="overflow-hidden">
       {/* react app */}
       <Router>
-        <Header />
+   
+    
+  
+      
+             <Header />
         <Routes>
           <Route path="/" element={<Home />} />
-<<<<<<< HEAD
-          <Route path="/login" element={<Login/>} />
-=======
->>>>>>> 4492678d782ebc26c12a56887defbe7e0957d015
+           <Route path="/register" element={<Register/>} />
+      <Route path="/login" element={<Login/>} />
+  
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/cart" element={<Cart/>} />
         </Routes>

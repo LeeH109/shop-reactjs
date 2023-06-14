@@ -35,26 +35,7 @@ const Cart = () => {
     
     </div>
 
-    {/* <div className="flex h-screen bg-gray-100 pt-9 container w-4/5 m-auto justify-between h-auto"> */}
-      {/* <div className="max-h-[500px] bg-white  ml-3">
-      <div className="flex-1 c m-auto ">
-        {cart.map((item) => {
-          //   return <CartItem item={item} key={item.id } />;
-          return <CartItem item={item} key={item.id} />;
-        })}
-      </div>
-      </div> */}
-
-
-
-      {/* order */}
-      {/* <div className=" m-auto border bg-white  rounded-lg w-full shadow-md md:mt-0 md:w-3/5 ">
-    
-      <div className="w-full">
-     
-      </div>
-      </div> */}
-
+  
       <div class="mx-auto max-w-[1210px] justify-center px-6 md:flex md:space-x-6 xl:px-0 container ">
       <div class="rounded-lg md:w-2/3">
       {cart.map((item) => {

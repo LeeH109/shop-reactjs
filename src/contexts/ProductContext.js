@@ -16,6 +16,7 @@ const ProductProvider = ({children}) => {
       try {
         const response = await fetch('https://shoe-data.onrender.com/products');
         const data = await response.json();
+      
         setProducts(data);
         setIsLoading(false);
       } catch (error) {
