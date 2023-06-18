@@ -19,7 +19,7 @@ const Header = () => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         console.log(user);
-        setUserName(user.email || "Guest");
+        setUserName("Back" || "Guest");
       } else {
         setUserName("Guest");
       }
@@ -40,7 +40,7 @@ const Header = () => {
         <p className="text-white">
           {" "}
           <div>
-            <h1>Welcome, {userName}</h1>
+            <h1>Welcome {userName}</h1>
 
             {/* <button onClick={() => addToCart1({ name: 'Mục mới' })}>Thêm vào giỏ hàng</button> */}
           </div>

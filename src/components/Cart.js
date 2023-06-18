@@ -52,7 +52,7 @@ const Cart = () => {
 
   return (
     <div className="w-full h-auto min-h-[680px] bg-gray-100 pb-8">
-      <div className="flex container justify-between mt-4 w-2/4  ml-52  mb-3">
+      <div className="flex container justify-between mt-4 w-2/4  ml-[12vw]  mb-3">
         <div className="pt-20 text-3xl font-bold  "> Cart </div>
         <div
           onClick={cleanCart}
@@ -60,11 +60,11 @@ const Cart = () => {
            text-black mr-2 item-center  duration-150 hover:text-red-500 "
         >
           <BsFillTrash2Fill className="text-2xl  " />
-          <span className="font-medium ml-1 mr-4  ">Remove</span>
+          <span className="font-medium ml-1 mr-1  ">Remove</span>
         </div>
       </div>
 
-      <div class="mx-auto max-w-[1210px] justify-center px-6 md:flex md:space-x-6 xl:px-0 container ">
+      <div class="mx-auto max-w-[1100px] justify-center px-6 md:flex md:space-x-6 xl:px-0 container ">
         <div class="rounded-lg md:w-2/3">
           {cart.map((item) => {
             //   return <CartItem item={item} key={item.id } />;

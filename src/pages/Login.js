@@ -28,6 +28,7 @@ const Login = () => {
       console.log("login successful");
       navigate("/");
       handleLogin1()
+
     } catch (error) {
       setShowToast(true);
 
@@ -58,8 +59,10 @@ const Login = () => {
         </div>
       </div>
       <div class="h-screen flex">
-        <div class="flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center">
-          <div>
+        <div class="flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center
+        max-[600px]:hidden max-[830px]:w-1/4
+        ">
+          <div className="max-[830px]:hidden">
             <h1 class="text-white font-bold text-4xl font-sans">Login</h1>
             <p class="text-white mt-1">
               The most popular peer to peer lending at SEA
@@ -72,7 +75,8 @@ const Login = () => {
             </button>
           </div>
         </div>
-        <div class="flex w-1/2 justify-center items-center bg-white ">
+        <div class="flex w-1/2 justify-center items-center bg-white 
+         max-[600px]:w-full max-[830px]:w-full  ">
           <form class="bg-white" onSubmit={handleLogin}>
             <h1 class="text-gray-800 font-bold text-2xl mb-1">Hello Again!</h1>
             <p class="text-sm font-normal text-gray-600 mb-7">Welcome Back</p>
