@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { useNavigate, useNavigation, useParams } from "react-router-dom";
 import { ProductContext } from "../contexts/ProductContext";
 import { CartContext } from "../contexts/CartContext";
-
 import { AiOutlineArrowLeft } from "react-icons/ai";
 
 const ProductDetails = () => {
@@ -60,7 +59,7 @@ md:my-12 lg:my-12 sm:my-12 "
         </div>
       </div>
 
-      <button onClick={goBack}>Quay lại</button>
+      {/* <button onClick={goBack}>Quay lại</button> */}
     </section>
   );
 };

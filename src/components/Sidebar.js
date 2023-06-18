@@ -10,23 +10,25 @@ import { Link } from "react-router-dom";
 
 const Sidebar = () => {
  
-  const { cart, cleanCart ,totalPrice ,totalItem} = useContext(CartContext);
-  const { isOpen, handleClose } = useContext(SidebarContext);
+  // const { cart, cleanCart ,totalPrice ,totalItem} = useContext(CartContext);
+  const { isOpen , handleClose } = useContext(SidebarContext);
 
   return (
     <div
-      className={`${isOpen ? "right-0" : "-right-full"} }
-  w-full bg-white fixed top-0 h-full
-  shadow-2xl md:x-[35vw] xl:max-w-[32vw] 
-  transition-all duration-300 z-20 px-4
-   lg:px-[35px]
+      className={`${ isOpen ? "right-0" : "-right-full"} }
+  w-full bg-white fixed top-0 h-full z-20 lg:max-w-[35vw] 
   `}
     >
+     {/* shadow-2xl 
+   md:x-[40vw] 
+  xl:max-w-[40vw] xl:right-1/4
+  transition-all duration-300 z-20 px-4
+   lg:px-[35px]   sm:right-3/4 sm:x-[40vw] */}
       <div
         className="flex items-center
      justify-between py-6 border-b"
       >
-        <div className="uppercase text-sm font-semibold ">Shopping({totalItem})</div>
+       
 
         <div
           onClick={handleClose}
@@ -36,42 +38,13 @@ const Sidebar = () => {
           <IoMdArrowForward className="text-2xl" />
         </div>
       </div>
-      <div className="flex flex-col gap-y-2 h-[450px] lg:h-[490px] overflow-y-auto overflow-x-hidden border-b">
-        {cart.map((item) => {
-          return <CartItem item={item} key={item.id } />;
-        })}{" "}
-      </div>
+      
 
-      <div className=" bg-pink-200 flex w-full justify-between items-center px-2 mt-10">
-        <div className=" ">
-          <span>Total : </span> $ {totalPrice.toFixed(0)}
-        </div>
-        <div
-          onClick={cleanCart}
-          className=" cursor-pointer py-4 bg-red-500 text-white w-12 h-12 flex justify-center items-center text-xl "
-        >
-          <BsFillTrash2Fill />
-        </div>
-      </div>
+     
 
       {/*  */}
 
-      <Link
-        to="/cart"
-        className="bg-gray-200 flex p-4 justify-center  
-items-center text-primary w-full font-medium
-"
-      >
-        {" "}
-        View cart
-      </Link>
-      <Link
-        to="/"
-        className="bg-primary flex p-4 justify-center items-center text-center text-white w-full font-medium "
-      >
-        {" "}
-        Checkout
-      </Link>
+    
     </div>
   );
 };

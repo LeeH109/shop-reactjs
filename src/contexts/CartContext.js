@@ -1,11 +1,124 @@
-import React, { createContext, useState } from "react";
-
+import React, { createContext, useEffect, useState } from "react";
+import { firestore } from "../firebaseConfig";
+import { auth, analytics } from "../firebaseConfig";
+import "firebase/compat/auth";
+import firebase from "../firebaseConfig";
 export const CartContext = createContext();
 
 const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
+//  const [isLogin ,setIsLogin] = useState(false);
+  const currentUser1 = auth.currentUser;
+  console.log("curent cart");
+  console.log(currentUser1);
 
-  //
+  // useEffect(() => {
+  //   // Lấy dữ liệu từ Firestore
+  //   if (currentUser1) {
+  //     const fetchData = async () => {
+  //       try {
+  //         const docRef = firestore.collection("cart").doc(currentUser1.uid);
+  //         const users = await docRef.get();
+  //         if (users.exists) {
+  //           const data = users.data();
+  //           console.log("data", data);
+  //           // setCart(data.item || []);
+  //           setCart(data.item || []);
+  //           // setIsLoading(false)
+  //         } else {
+  //           setCart([]);
+  //           console.log("Document does not exist");
+  //           // setIsLoading(false)
+  //         }
+  //       } catch (error) {
+  //         console.error("Error getting document:", error);
+  //       }
+  //     };
+  //     fetchData();
+  //   }
+  // }, [currentUser1]);
+
+  // console.log("data của cart12");
+  // console.log(cart);
+  // const navigate = useNavigate();
+  useEffect(() => {
+    const saveCartToFirestore = async (cartData) => {
+      try {
+        if (currentUser1) {
+          console.log(currentUser1);
+          const cartRef = firestore.collection("cart").doc(currentUser1.uid);
+          console.log(cartRef);
+          await cartRef.set({ cart: cartData });
+          console.log("Thông tin giỏ hàng đã được lưu vào Firestore");
+        }
+      } catch (error) {
+        console.error("Lỗi khi lưu thông tin giỏ hàng1:", error);
+      }
+    };
+    if (cart) {
+      saveCartToFirestore(cart);
+    }
+  }, [cart, currentUser1]);
+
+  const handleLogout = async () => {
+    try {
+      await firebase.auth().signOut();
+      setCart([]);
+      //  setIsLogin(false)
+      
+      alert("thanh công");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Khi người dùng đăng nhập lại
+  const handleLogin1 = () => {
+    const userId = auth.currentUser.uid;
+    const fetchData = async () => {
+      try {
+        const docRef = firestore.collection("cart").doc(userId);
+        const users = await docRef.get();
+        if (users.exists) {
+          const data = users.data();
+          console.log("datacart", data.cart);
+          setCart(data.cart);
+        } else {
+          setCart([]);
+          console.log("Document does not exist");
+        }
+      } catch (error) {
+        console.error("Error getting document:", error);
+      }
+    };
+    fetchData();
+    // setIsLogin(true)
+  };
+
+  // checkout
+  const handleCheckout = (sum)=>{
+    const userId = auth.currentUser;
+    console.log('check');
+    if(userId)
+    {
+      console.log('có');
+      if(cart.length === 0)
+     {
+      alert('Giỏ hàng chưa có sản phẩm nào ! Vui lòng thêm sản phẩm !!!')
+
+     }
+      else 
+      {
+        alert('Thanh toán thành công ')
+        setCart([]);
+      }
+    }
+    else
+    {
+      alert('Vui lòng đăng nhập để thanh toán !!!');
+    }
+  }
+
   const addToCart = (product, id) => {
     // console.log('addToCart',product , id);
     // item mới
@@ -29,18 +142,18 @@ const CartProvider = ({ children }) => {
     }
   };
 
-  // tăng 
+  // tăng
 
-  const increaseAmount = (id)=>{
-    const cartItem = cart.find((item)=> item.id=== id);
-    addToCart(cartItem,id)
-  }
-  // giảm 
-  const decreaseAmount = (id)=>{
+  const increaseAmount = (id) => {
+    const cartItem = cart.find((item) => item.id === id);
+    addToCart(cartItem, id);
+  };
+  // giảm
+  const decreaseAmount = (id) => {
     // console.log('giam sl' ,id);
-    const cartItem = cart.find((item)=> item.id===id) ; 
-     // true
-     if (cartItem) {
+    const cartItem = cart.find((item) => item.id === id);
+    // true
+    if (cartItem) {
       const newCart = [...cart].map((item) => {
         if (item.id === id) {
           return { ...item, amount: cartItem.amount - 1 };
@@ -49,37 +162,61 @@ const CartProvider = ({ children }) => {
         }
       });
       setCart(newCart);
-    } 
-    if(cartItem.amount < 2)
-    {
-      removeCart(id)
     }
-    else {
-      // 
+    if (cartItem.amount < 2) {
+      removeCart(id);
+    } else {
+      //
     }
-  }
+  };
 
-// xóa 1 item 
-const removeCart = (id)=>{
- console.log(id);
-  const newCart = cart.filter((item)=>{
-    return item.id !== id;
-  })
-  setCart(newCart)
-}
-// cl 
+  // xóa 1 item
+  const removeCart = (id) => {
+    console.log(id);
+    const newCart = cart.filter((item) => {
+      return item.id !== id;
+    });
+    setCart(newCart);
+  };
+  // cl
   console.log(cart);
 
-  // clean 
-const cleanCart = ()=>{
-  setCart([])
-}
+  // clean
+  const cleanCart = () => {
+    setCart([]);
+  };
   //tien
-  const totalItem = cart.reduce((total, item) => total +  item.amount , 0);
-  const totalPrice = cart.reduce((total, item) => total + item.originalPrice* item.amount , 0);
+  const totalItem = Array.isArray(cart)
+    ? cart.reduce((total, item) => total + item.amount, 0)
+    : 0;
+
+  // const totalItem = cart.reduce((total, item) => total +  item.amount , 0);
+  const totalPrice = Array.isArray(cart)
+    ? cart.reduce((total, item) => total + item.originalPrice * item.amount, 0)
+    : 0;
+    const totalP = cart.reduce(
+      (total, item) => total + item.originalPrice * item.amount + 4.99,
+      0
+    ).toFixed(0);
+   
+  
   return (
-    <CartContext.Provider value={{ addToCart ,cart, cleanCart , removeCart
-    ,totalItem , increaseAmount ,totalPrice, decreaseAmount }}>
+    <CartContext.Provider
+      value={{
+        addToCart,
+        cart,
+        cleanCart,
+        removeCart,
+        totalItem,
+        increaseAmount,
+        totalPrice,
+        decreaseAmount,
+        handleLogin1,
+        handleLogout,
+        handleCheckout,
+        totalP
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

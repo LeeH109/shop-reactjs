@@ -5,8 +5,8 @@ import Product from "../components/Product";
 import Hero from "../components/Hero";
 import { CartContext } from "../contexts/CartContext";
 import Skeleton from "react-loading-skeleton";
-import firebase, { firestore } from "../firebaseConfig";
-import { auth } from "../firebaseConfig";
+import { firestore } from "../firebaseConfig";
+import { auth, analytics } from "../firebaseConfig";
 import "firebase/compat/auth";
 const Home = () => {
   const { products } = useContext(ProductContext);
@@ -53,60 +53,10 @@ const Home = () => {
     setCurrentPage(pageNumber);
   };
 
-  const [displayName, setDisplayName] = useState("");
-  useEffect(() => {
-    console.log("use");
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      if (user) {
-        // User is signed in
-        console.log(user.email);
-        console.log(user.uid);
-        setDisplayName(user.email);
-      } else {
-        // User is signed out
-        setDisplayName("Khách");
-      }
-    });
-
-    // Clean up subscription on unmount
-    return () => unsubscribe();
-  }, []);
-  // const [cart, setCart] = useState([]);
-  // const currentUser = auth.currentUser;
-  // useEffect(() => {
-    // Hàm lưu thông tin giỏ hàng vào Firestore
-  //   const saveCartToFirestore = async (cartData) => {
-  //     try {
-  //       if (currentUser) {
-  //         console.log(currentUser);
-     
-  //         const cartRef = firestore.collection('cart').doc(currentUser.uid);
-  //         console.log(cartRef);
-  //         await cartRef.set(
-  //           { cart : cartData }
-  //           );
-  //         console.log('Thông tin giỏ hàng đã được lưu vào Firestore');
-  //       }
-  //     } 
-      
-  //     catch (error) {
-  //       console.error('Lỗi khi lưu thông tin giỏ hàng:', error);
-  //     }
-  //   };
-
-  //   // Gọi hàm lưu thông tin giỏ hàng khi giỏ hàng thay đổi
-  //   if (cart) {
-  //     saveCartToFirestore(cart);
-  //   }
-  // }, [cart, currentUser]);
-  // const addToCart1 = (item) => {
-  //   setCart((prevCart) => [...prevCart, item]);
-  // };
-
   return (
     <div>
       <Hero />
-      
+
       {/* search */}
       <div className="flex items-center container justify-center mx-auto">
         <div className="flex border border-purple-200 rounded mt-10">
@@ -128,11 +78,6 @@ const Home = () => {
         </div>
       </div>
       {/* Homepage */}
-      <div>
-        <h1>Welcome, {displayName || "Guest"}</h1>
-        {/* Render other components */}
-        {/* <button onClick={() => addToCart1({ name: 'Mục mới' })}>Thêm vào giỏ hàng</button> */}
-      </div>
 
       <section className="py-16">
         <div className="container mx-auto">

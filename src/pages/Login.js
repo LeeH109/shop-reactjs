@@ -1,12 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import firebase from "../firebaseConfig";
 import "firebase/compat/auth";
 import { useNavigate } from "react-router-dom";
 import Toast from "../hook/messageToast";
 import { Link } from "react-router-dom";
+import { CartContext } from "../contexts/CartContext";
 
 const Login = () => {
+
+  const { handleLogin1 } = useContext(CartContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -24,9 +27,8 @@ const Login = () => {
       await firebase.auth().signInWithEmailAndPassword(email, password);
       console.log("login successful");
       navigate("/");
-      // Đăng nhập thành công, xử lý điều hướng hoặc cập nhật trạng thái ứng dụng
+      handleLogin1()
     } catch (error) {
-      ///
       setShowToast(true);
 
       console.log("sai");
@@ -36,6 +38,8 @@ const Login = () => {
   const handleClose = () => {
     setShowToast(false);
   };
+
+  
   return (
     <div>
       <div className="relative">
