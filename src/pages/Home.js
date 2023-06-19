@@ -80,7 +80,7 @@ const Home = () => {
       {/* Homepage */}
 
       <section className="py-16">
-        <div className="container mx-auto">
+        <div className="container mx-auto px-[2vw]">
           <div
             className="grid grid-cols-1 md:grid-cols-2
           lg:grid-cols-4 xl:grid-cols-5
