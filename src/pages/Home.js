@@ -42,7 +42,7 @@ const Home = () => {
 
   // const visible = showAll ? products : products.slice(0,14);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 12; // Thay đổi số này tùy theo yêu cầu của bạn
+  const itemsPerPage = 12; 
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
