@@ -19,7 +19,7 @@ const Header = () => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         console.log(user);
-        setUserName("Back" || "Guest");
+        setUserName("Back" );
       } else {
         setUserName("Guest");
       }
