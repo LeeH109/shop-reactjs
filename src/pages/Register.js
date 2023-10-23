@@ -1,14 +1,16 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import firebase from "../firebaseConfig";
 import "firebase/compat/auth";
+import Toast from "../hook/messageToast";
 
 const Register = () => {
   //
+  const navigate = useNavigate()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-
+  const [showToast, setShowToast] = useState(false);
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -16,16 +18,35 @@ const Register = () => {
       if (password === password2) {
         await firebase.auth().createUserWithEmailAndPassword(email, password);
         console.log("login successful");
+navigate("/login")
       } else {
+        setShowToast(true);
         alert("Password does not match");
       }
     } catch (error) {
+      setShowToast(true);
       console.log("register failed");
     }
+  };
+  const handleClose = () => {
+    setShowToast(false);
   };
 
   return (
     <div>
+    <div style={{ display: showToast === true ? "block" : "none" }}>
+          {showToast && (
+            <div
+              className="absolute right-0  items-center justify-between rounded-t-lg 
+        
+     mx-2
+       text-primary-700 mt-20   border-l-3  
+        "
+            >
+              <Toast message="đăng ký thất bại" onClose={handleClose} />
+            </div>
+          )}
+        </div>
       <div class="h-screen flex">
         <div class="flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center
            max-[600px]:hidden max-[830px]:w-1/4">
