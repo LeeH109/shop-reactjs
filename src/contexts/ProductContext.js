@@ -25,14 +25,7 @@ const ProductProvider = ({ children }) => {
 
     fetchProducts();
   }, []);
-  // đã có mảng =>  chạy hết mới đến useEffect
-  // console.log(products);
-
-  // if (isLoading) {
-  //   return <div>Loading...</div>;
-  // }
-
-  // truyền products
+ 
   return (
     <ProductContext.Provider value={{ products }}>
       {/* {children} */}

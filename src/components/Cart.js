@@ -16,39 +16,9 @@ const Cart = () => {
   const { cart , totalPrice, cleanCart, handleCheckout,totalP } = useContext(CartContext);
   const navigate = useNavigate();
   function goBack() {
-    navigate(-1); // Quay lại trang trước đó
+    navigate(-1); 
   }
-  // const totalP = cart.reduce(
-  //   (total, item) => total + item.originalPrice * item.amount + 4.99,
-  //   0
-  // );
-
-
-  // const [data, setData] = useState([]);
-  // useEffect(() => {
-  //   // Lấy dữ liệu từ Firestore
-  //   const user = auth.currentUser;
-  //   if (user) {
-  //       const fetchData = async () => {
-  //   try {
-  //     const docRef = firestore.collection('cart').doc(user.uid);
-  //     const users = await docRef.get();
-  //     if (users.exists) {
-  //       const data = users.data();
-  //       console.log(data);
-  //       setData(data);
-  //     } else {
-  //       console.log('Document does not exist');
-  //     }
-  //   } catch (error) {
-  //     console.error('Error getting document:', error);
-  //   }
-  // };
-  //     fetchData();
-  //   }
-  // }, []);
-  // console.log("data của cart");
-  // console.log(data.cart);
+ 
 
   return (
     <div className="w-full h-auto min-h-[680px] bg-gray-100 pb-8">

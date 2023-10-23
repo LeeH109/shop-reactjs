@@ -12,35 +12,7 @@ const CartProvider = ({ children }) => {
   console.log("curent cart");
   console.log(currentUser1);
 
-  // useEffect(() => {
-  //   // Lấy dữ liệu từ Firestore
-  //   if (currentUser1) {
-  //     const fetchData = async () => {
-  //       try {
-  //         const docRef = firestore.collection("cart").doc(currentUser1.uid);
-  //         const users = await docRef.get();
-  //         if (users.exists) {
-  //           const data = users.data();
-  //           console.log("data", data);
-  //           // setCart(data.item || []);
-  //           setCart(data.item || []);
-  //           // setIsLoading(false)
-  //         } else {
-  //           setCart([]);
-  //           console.log("Document does not exist");
-  //           // setIsLoading(false)
-  //         }
-  //       } catch (error) {
-  //         console.error("Error getting document:", error);
-  //       }
-  //     };
-  //     fetchData();
-  //   }
-  // }, [currentUser1]);
 
-  // console.log("data của cart12");
-  // console.log(cart);
-  // const navigate = useNavigate();
   useEffect(() => {
     const saveCartToFirestore = async (cartData) => {
       try {
@@ -72,7 +44,7 @@ const CartProvider = ({ children }) => {
     }
   };
 
-  // Khi người dùng đăng nhập lại
+  
   const handleLogin1 = () => {
     const userId = auth.currentUser.uid;
     const fetchData = async () => {
@@ -121,9 +93,9 @@ const CartProvider = ({ children }) => {
 
   const addToCart = (product, id) => {
     // console.log('addToCart',product , id);
-    // item mới
+   
     const newItem = { ...product, amount: 1 };
-    // kiểm tra có sp nào k ? nếu có id sp trong giỏ
+   
     const cartItem = cart.find((item) => {
       return item.id === id;
     });
@@ -142,15 +114,13 @@ const CartProvider = ({ children }) => {
     }
   };
 
-  // tăng
 
   const increaseAmount = (id) => {
     const cartItem = cart.find((item) => item.id === id);
     addToCart(cartItem, id);
   };
-  // giảm
   const decreaseAmount = (id) => {
-    // console.log('giam sl' ,id);
+ 
     const cartItem = cart.find((item) => item.id === id);
     // true
     if (cartItem) {
@@ -190,7 +160,7 @@ const CartProvider = ({ children }) => {
     ? cart.reduce((total, item) => total + item.amount, 0)
     : 0;
 
-  // const totalItem = cart.reduce((total, item) => total +  item.amount , 0);
+
   const totalPrice = Array.isArray(cart)
     ? cart.reduce((total, item) => total + item.originalPrice * item.amount, 0)
     : 0;

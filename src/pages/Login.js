@@ -6,15 +6,15 @@ import { useNavigate } from "react-router-dom";
 import Toast from "../hook/messageToast";
 import { Link } from "react-router-dom";
 import { CartContext } from "../contexts/CartContext";
-
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
 
   const { handleLogin1 } = useContext(CartContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  //ẩn
-  const [showToast, setShowToast] = useState(false);
+
 
   const navigate = useNavigate();
   const handleLogin = async (e) => {
@@ -28,35 +28,23 @@ const Login = () => {
       console.log("login successful");
       navigate("/");
       handleLogin1()
-
+      
+      toast("Login success");
     } catch (error) {
-      setShowToast(true);
+      toast("Login failed!");
 
       console.log("sai");
       console.error(error);
     }
   };
-  const handleClose = () => {
-    setShowToast(false);
-  };
-
+  
   
   return (
     <div>
       <div className="relative">
-        <div style={{ display: showToast === true ? "block" : "none" }}>
-          {showToast && (
-            <div
-              className="absolute right-0  items-center justify-between rounded-t-lg 
-        
-     mx-2
-       text-primary-700 mt-20   border-l-3  
-        "
-            >
-              <Toast message="đăng nhập thất bại" onClose={handleClose} />
-            </div>
-          )}
-        </div>
+   
+    <ToastContainer />
+  
       </div>
       <div class="h-screen flex">
         <div class="flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center

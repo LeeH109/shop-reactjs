@@ -47,9 +47,11 @@ const Header = () => {
         </p>
         <div className="relative  ">
           <div className="flex  items-center">
-            <button className="text-white" onClick={handleLogout}>
+           {userName !== "Guest"? <> <button className="text-white" onClick={handleLogout}>
               Logout
-            </button>
+            </button></>:<>
+
+            </>}
 
             <Link to={`/login`}>
               <CiUser className="text-3xl font-bold mx-2 " color="white" />
